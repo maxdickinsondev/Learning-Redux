@@ -1,3 +1,5 @@
+import firebase from '../database/FirebaseConnection';
+
 export const editEmail = (email) => {
     return {
         type:'editEmail',
@@ -14,4 +16,25 @@ export const editSenha = (senha) => {
             senha:senha
         }
     }
-}
+};
+
+export const cadastrar = (email, senha) => {
+
+    return (dispatch) => {
+
+        firebase.auth().createUserWithEmailAndPassword(email, senha)
+            .then((user) => {
+                dispatch({
+                    type:'cadastroSucesso'
+                });
+            })
+            .catch((error) => {
+                dispatch({
+                    type:'cadastroError',
+                    payload:{
+                        code:error.code
+                    }
+                });
+            });
+    }
+};

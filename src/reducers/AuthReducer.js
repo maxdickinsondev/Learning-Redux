@@ -17,6 +17,16 @@ const AuthReducer = (state = [], action) => {
         return { ...state, senha:action.payload.senha }
     }
 
+    if (action.type == 'cadastroSucesso'){
+        alert('Cadastro com sucesso!');
+        return state;
+    }
+
+    if (action.type == 'cadastroError'){
+        alert('Erro: ' + action.payload.code);
+        return state;
+    }
+
     return state;
 
 };

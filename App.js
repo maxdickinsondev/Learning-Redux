@@ -3,7 +3,8 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import ReduxThunk from 'redux-thunk';
 
 import Home from './src/screens/Home';
 import Login from './src/screens/Login';
@@ -11,7 +12,7 @@ import Cadastro from './src/screens/Cadastro';
 
 import Reducers from './src/store/Reducers';
 
-let store = createStore(Reducers);
+let store = createStore(Reducers, applyMiddleware(ReduxThunk));
 
 const Navigator = createStackNavigator({
   Home:{
