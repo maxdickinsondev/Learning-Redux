@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ImageBackground, TouchableHighlight } from 'react-native';
 
-import firebase from '../database/FirebaseConnection';
-
 export default class Home extends Component{
 
     static navigationOptions = {
@@ -15,15 +13,6 @@ export default class Home extends Component{
         this.state = {
             saldoGeral:0
         };
-
-        firebase.database().ref('usuarios').on('value', (snapshot) => {
-
-            snapshot.forEach((childItem) => {
-                this.state.saldoGeral += childItem.val().saldo;
-            })
-            
-            this.setState(this.state);
-        });
 
         this.cadastrar = this.cadastrar.bind(this);
         this.login = this.login.bind(this);

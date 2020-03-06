@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
 
 import { connect } from 'react-redux';
+import { editEmail, editSenha } from '../actions/AuthActions';
 
 export class Cadastro extends Component{
 
@@ -28,10 +29,19 @@ export class Cadastro extends Component{
         return(
             <View style={styles.container}>
                 <Text>E-mail</Text>
-                <TextInput value={this.props.email} style={styles.input} />
+                <TextInput 
+                    value={this.props.email} 
+                    style={styles.input}
+                    onChangeText={(text) => this.props.editEmail(text)} 
+                />
 
                 <Text>Senha</Text>
-                <TextInput value={this.props.senha} secureTextEntry={true} style={styles.input} />
+                <TextInput 
+                    value={this.props.senha} 
+                    secureTextEntry={true} 
+                    style={styles.input}
+                    onChangeText={(text) => this.props.editSenha(text)} 
+                />
 
                 <Button title='Cadastrar' onPress={this.cadastrar} />
             </View>
@@ -58,6 +68,6 @@ const mapStateToProps = (state) => {
     }
 };
 
-const CadastroConnect = connect(mapStateToProps)(Cadastro);
+const CadastroConnect = connect(mapStateToProps, { editEmail, editSenha })(Cadastro);
 
 export default CadastroConnect;

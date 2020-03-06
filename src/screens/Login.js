@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
 
 import { connect } from 'react-redux';
+import { editEmail, editSenha } from '../actions/AuthActions';
 
 export class Login extends Component{
 
@@ -28,10 +29,19 @@ export class Login extends Component{
         return(
             <View style={styles.container}>
                 <Text>E-mail</Text>
-                <TextInput value={this.props.email} style={styles.input} />
+                <TextInput 
+                    value={this.props.email} 
+                    style={styles.input}
+                    onChangeText={(text) => this.props.editEmail(text)} 
+                />
 
                 <Text>Senha</Text>
-                <TextInput value={this.props.senha} secureTextEntry={true} style={styles.input} />
+                <TextInput 
+                    value={this.props.senha} 
+                    secureTextEntry={true} 
+                    style={styles.input}
+                    onChangeText={(text) => this.props.editSenha(text)} 
+                />
 
                 <Button title='Entrar' onPress={this.entrar} />
             </View>
@@ -58,6 +68,6 @@ const mapStateToProps = (state) => {
     }
 };
 
-const LoginConnect = connect(mapStateToProps)(Login);
+const LoginConnect = connect(mapStateToProps, { editEmail, editSenha })(Login);
 
 export default LoginConnect;

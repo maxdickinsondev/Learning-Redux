@@ -9,6 +9,14 @@ const AuthReducer = (state = [], action) => {
         return initialState;
     }
 
+    if (action.type == 'editEmail'){
+        return { ...state, email:action.payload.email };
+    }
+
+    if (action.type == 'editSenha'){
+        return { ...state, senha:action.payload.senha }
+    }
+
     return state;
 
 };
